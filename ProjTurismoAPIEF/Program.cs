@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ProjTurismoAPIEF.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ProjTurismoAPIEFContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ProjTurismoAPIEFContext") ?? throw new InvalidOperationException("Connection string 'ProjTurismoAPIEFContext' not found.")));
 
 // Add services to the container.
 
