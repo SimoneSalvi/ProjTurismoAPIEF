@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjTurismoAPIEF.Data;
 
@@ -11,9 +12,11 @@ using ProjTurismoAPIEF.Data;
 namespace ProjTurismoAPIEF.Migrations
 {
     [DbContext(typeof(ProjTurismoAPIEFContext))]
-    partial class ProjTurismoAPIEFContextModelSnapshot : ModelSnapshot
+    [Migration("20230424112202_V5")]
+    partial class V5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

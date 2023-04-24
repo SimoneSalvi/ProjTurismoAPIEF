@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjTurismoAPIEF.Data;
 
@@ -11,9 +12,11 @@ using ProjTurismoAPIEF.Data;
 namespace ProjTurismoAPIEF.Migrations
 {
     [DbContext(typeof(ProjTurismoAPIEFContext))]
-    partial class ProjTurismoAPIEFContextModelSnapshot : ModelSnapshot
+    [Migration("20230424112048_V4")]
+    partial class V4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,8 +134,8 @@ namespace ProjTurismoAPIEF.Migrations
                     b.Property<int>("OriginId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("Value")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 

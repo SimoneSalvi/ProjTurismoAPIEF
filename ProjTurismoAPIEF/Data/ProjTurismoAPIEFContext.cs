@@ -17,5 +17,9 @@ namespace ProjTurismoAPIEF.Data
         public DbSet<ProjTurismoAPIEF.Models.City> City { get; set; } = default!;
 
         public DbSet<ProjTurismoAPIEF.Models.Address>? Address { get; set; }
+
+        public DbSet<ProjTurismoAPIEF.Models.Client>? Client { get; set; }
+
+        public DbSet<ProjTurismoAPIEF.Models.Ticket>? Ticket { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjTurismoAPIEF.Data;
 
@@ -11,9 +12,11 @@ using ProjTurismoAPIEF.Data;
 namespace ProjTurismoAPIEF.Migrations
 {
     [DbContext(typeof(ProjTurismoAPIEFContext))]
-    partial class ProjTurismoAPIEFContextModelSnapshot : ModelSnapshot
+    [Migration("20230424094611_V2")]
+    partial class V2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,40 +114,6 @@ namespace ProjTurismoAPIEF.Migrations
                     b.ToTable("Client");
                 });
 
-            modelBuilder.Entity("ProjTurismoAPIEF.Models.Ticket", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DestinationId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DtTicket")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("OriginId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("DestinationId");
-
-                    b.HasIndex("OriginId");
-
-                    b.ToTable("Ticket");
-                });
-
             modelBuilder.Entity("ProjTurismoAPIEF.Models.Address", b =>
                 {
                     b.HasOne("ProjTurismoAPIEF.Models.City", "City")
@@ -165,33 +134,6 @@ namespace ProjTurismoAPIEF.Migrations
                         .IsRequired();
 
                     b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("ProjTurismoAPIEF.Models.Ticket", b =>
-                {
-                    b.HasOne("ProjTurismoAPIEF.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjTurismoAPIEF.Models.Address", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjTurismoAPIEF.Models.Address", "Origin")
-                        .WithMany()
-                        .HasForeignKey("OriginId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Destination");
-
-                    b.Navigation("Origin");
                 });
 #pragma warning restore 612, 618
         }
